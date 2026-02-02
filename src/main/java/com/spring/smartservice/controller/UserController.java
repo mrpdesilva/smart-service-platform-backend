@@ -1,7 +1,10 @@
 package com.spring.smartservice.controller;
 
+import com.spring.smartservice.dto.UserRequestDto;
+import com.spring.smartservice.dto.UserResponseDto;
 import com.spring.smartservice.entity.User;
 import com.spring.smartservice.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,12 +20,12 @@ public class UserController {
     }
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
-        return userService.saveUser(user);
+    public UserResponseDto createUser(@Valid @RequestBody UserRequestDto dto) {
+        return userService.createUser(dto);
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
+    public List<UserResponseDto> getUsers() {
         return userService.getAllUsers();
     }
 }
