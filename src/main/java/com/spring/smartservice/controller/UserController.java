@@ -19,13 +19,21 @@ public class UserController {
         this.userService = userService;
     }
 
+    // CREATE USER
     @PostMapping
     public UserResponseDto createUser(@Valid @RequestBody UserRequestDto dto) {
         return userService.createUser(dto);
     }
 
+    // GET ALL USERS
     @GetMapping
     public List<UserResponseDto> getUsers() {
         return userService.getAllUsers();
+    }
+
+    // GET USER BY ID
+    @GetMapping("/{id}")
+    public UserResponseDto getUserById(@PathVariable Long id) {
+        return userService.getUserById(id);
     }
 }
